@@ -1,25 +1,25 @@
 import os
 from mutagen.easyid3 import EasyID3
 
-from .config import INPUT_PATH
 
+def scan_local_music(path):
 
-def scan_local_music():
+    print(path)
 
     songs = []
 
-    # case 1: folder
-    if os.path.isdir(INPUT_PATH):
+    # folder mode
+    if os.path.isdir(path):
 
-        for file in os.listdir(INPUT_PATH):
+        for file in os.listdir(path):
 
             if not file.endswith(".mp3"):
                 continue
 
-            path = os.path.join(INPUT_PATH, file)
+            full_path = os.path.join(path, file)
 
             try:
-                audio = EasyID3(path)
+                audio = EasyID3(full_path)
 
                 title = audio["title"][0]
                 artist = audio["artist"][0]
@@ -30,10 +30,10 @@ def scan_local_music():
 
                 songs.append(file.replace(".mp3", ""))
 
-    # case 2: text file
-    elif os.path.isfile(INPUT_PATH):
+    # text file mode
+    elif os.path.isfile(path):
 
-        with open(INPUT_PATH, "r") as f:
+        with open(path) as f:
 
             for line in f:
                 line = line.strip()
@@ -43,6 +43,6 @@ def scan_local_music():
 
     else:
 
-        raise FileNotFoundError(f"{INPUT_PATH} not found")
+        raise FileNotFoundError(f"{path} not found")
 
     return songs

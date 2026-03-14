@@ -13,14 +13,16 @@ readme = "README.md"
 requires-python = ">=3.9"
 
 dependencies = [
-  "ytmusicapi",
-  "mutagen",
-  "rapidfuzz",
-  "rich"
+    "ytmusicapi",
+    "mutagen",
+    "rapidfuzz",
+    "rich",
+    "typer",
+    "yt-dlp",
 ]
 
 [project.scripts]
-musync = "ytmusic_sync.cli:main"
+musync = "ytmusic_sync.cli:app"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
