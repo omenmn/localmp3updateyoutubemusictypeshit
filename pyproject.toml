@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ytmusic-sync"
+version = "0.1.0"
+description = "Sync YouTube Music listening history with a local MP3 library"
+authors = [
+  {name = "meqr"}
+]
+readme = "README.md"
+requires-python = ">=3.9"
+
+dependencies = [
+  "ytmusicapi",
+  "mutagen",
+  "rapidfuzz",
+  "rich"
+]
+
+[project.scripts]
+musync = "ytmusic_sync.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
